@@ -10,7 +10,7 @@ This technique will create a `PAGE_EXECUTE_READWRITE` memory region where the en
 
 Next, the program will install a `Vectored Exception Handler` (VEH). This VEH will basically act like a `debugger`, single stepping through the code, reading the instruction pointer register (RIP) for each `SINGLE STEP` exception received by the VEH, and decrypting the next 16 bytes (maximum x64 assembly instruction length) where RIP points . The VEH also encrypts back the previously decrypted instruction, ensuring that the rest of the shellcode stays always encrypted with the exception of the single assembly instruction currently executed. After that, it will continue execution, with the `TRAP FLAG` configured on the Eflags register. This will ensure that the next assembly instruction will also trigger a breakpoint exception that the VEH can handle.
 
- After that, the `main thread` execution will be redirected to the `payload entrypoint`. When the HWBP will be triggered at the entrypoint, the VEH will stop at each assembly instruction executed, perform the decryption of the next assembly instruction and encrypt the previous encrypted instruction which is saved as a global variable.
+ After the VEH installation, the `main thread` execution will be redirected to the `payload entrypoint`. When the HWBP will be triggered at the entrypoint, the VEH will stop at each assembly instruction executed, perform the decryption of the next assembly instruction and encrypt the previous encrypted instruction which is saved as a global variable.
 
 By doing this, basically `one single assembly instruciton is decrypted at a time`, with the rest of the `payload staying encrypted`.
 ____
