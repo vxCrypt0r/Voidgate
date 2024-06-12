@@ -39,7 +39,7 @@ INT main()
     PVOID veh = AddVectoredExceptionHandler(1, &VehDecryptHeapAsm);
     if (veh)
     {
-        std::cout << "Starting the on-the-fly encrypted assembly execution thread... This may take a while depending on the efficiency of the shellcode..." << std::endl;
+        std::cout << "Executing the payload with VEH ASM decryption... This may take a while depending on the efficiency of the shellcode..." << std::endl;
         VoidGate vg = (VoidGate)payload_entry;
         vg();
     }
